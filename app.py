@@ -21,6 +21,11 @@ def main():
 
     st.title("_Private Data :red[QA Chat]_ :books:")
 
+    # 이미 저장된 백터스토어 가져오기
+    # dir_path = "./chroma_db/질링스 기업 100"
+    # dir_path = "./chroma_db/질링스 기업 1000"
+    dir_path = "./chroma_db/질링스 기업"
+
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
 
@@ -31,6 +36,9 @@ def main():
         st.session_state.disabled_text_area = None
 
     with st.sidebar:
+
+        st.markdown(dir_path)
+
         context = """- 유사업체, 경쟁사는 추천할 때는 "한줄소개"와 "산업분야" 정보를 비교해서 추천해주세요. 그리고 추천 알고리즘을 설명하지 않고 결과만 바로 보여주세요.
 - 결과 표시는 "기업명 :  |한줄소개: | 산업분야: | 투자금 : | 시도: | 설립일 : | 홈페이지 : | 직원수 : " 형식으로 보여주세요.(최대 5개).
 - 결과 마지막은 "최대 5개 기업만 표시합니다. 더 많은 중소기업을 찾고 싶으시다면 https://app.zillinks.com/search 에 접속하여 검색하세요. 정보에 관련된 제안이 있다면 info@zillinks.com로 연락주세요." 라는 문구를 띄어줘"""
@@ -42,11 +50,6 @@ def main():
 
     if "processComplete" not in st.session_state:
         st.session_state.processComplete = None
-
-        # 이미 저장된 백터스토어 가져오기
-        # dir_path = "./chroma_db/질링스 기업 100"
-        dir_path = "./chroma_db/질링스 기업 1000"
-        # dir_path = "./chroma_db/질링스 기업"
 
         st.markdown("챗 구성중...From " + dir_path)
 
