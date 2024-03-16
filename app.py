@@ -1,8 +1,5 @@
 import os
-import time
 import streamlit as st
-
-from dotenv import load_dotenv
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_community.vectorstores import Chroma
@@ -16,8 +13,6 @@ from langchain.memory import ConversationBufferMemory
 
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
-
-load_dotenv()
 
 def main():
     st.set_page_config(
@@ -75,7 +70,7 @@ def main():
         ])
 
         llm = ChatOpenAI(
-                openai_api_key=os.getenv('OPENAI_API_KEY'), 
+                openai_api_key=st.secrets["OPENAI_API_KEY"], 
                 # model_name = 'gpt-4',
                 model_name = 'gpt-3.5-turbo',
                 temperature=0
