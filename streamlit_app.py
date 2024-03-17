@@ -1,4 +1,7 @@
-import os
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
 import streamlit as st
 
 from langchain_community.embeddings import HuggingFaceEmbeddings
@@ -14,7 +17,7 @@ from langchain.memory import ConversationBufferMemory
 from langchain_openai import ChatOpenAI
 from langchain.chains import ConversationalRetrievalChain
 
-openai_api_key = st.secrets["OPENAI"]["API_KEY"]
+openai_api_key = st.secrets.OPENAI_API_KEY
 
 def main():
     st.set_page_config(
@@ -22,12 +25,11 @@ def main():
     page_icon=":books:")
 
     st.title("_Private Data :red[QA Chat]_ :books:")
-    st.markdown(st.secrets['test'])
 
     # 이미 저장된 백터스토어 가져오기
     # dir_path = "./chroma_db/질링스 기업 100"
     # dir_path = "./chroma_db/질링스 기업 1000"
-    dir_path = "./chroma_db/질링스 기업"
+    dir_path = "./chroma_db/질링스 기업 4000"
 
     if "conversation" not in st.session_state:
         st.session_state.conversation = None
